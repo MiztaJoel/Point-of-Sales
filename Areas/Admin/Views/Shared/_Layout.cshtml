@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Sono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+
+
+    <div class="Layout">
+        <div class="Layout__header">
+            HEADER
+        </div>
+        <aside class="Layout__Sidebar">
+            <div class="Layout__Sidebar__Logo">
+                <img class="Layout__Sidebar__Logo-Img" src="~/Image/logo-dark.png" alt="Logo" />
+            </div>
+            <nav id="nav" class="Layout__Sidebar__nav">
+                <ul class="Layout__Sidebar__nav__item" id="nav">
+                    <li class="nav-link">
+                        <a href="#" class="Layout__Sidebar__nav__item__Link nav-link">
+                            <svg class="Layout__Sidebar__nav__item__list__Link__icon">
+                                <use xlink:href="~/Image/sprite.svg#icon-user"></use>
+                            </svg>
+                            <span class="Layout__Sidebar__nav__item__list__Link__icon__span">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="Layout__Sidebar__nav__item__Link nav-link">
+                            <svg class="Layout__Sidebar__nav__item__list__Link__icon">
+                                <use xlink:href="~/Image/sprite.svg#icon-user"></use>
+                            </svg>
+                            <span class="Layout__Sidebar__nav__item__list__Link__icon__span">Product</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="Layout__Sidebar__nav__item__Link nav-link">
+                            <svg class="Layout__Sidebar__nav__item__list__Link__icon">
+                                <use xlink:href="~/Image/sprite.svg#icon-user"></use>
+                            </svg>
+                            <span class="Layout__Sidebar__nav__item__list__Link__icon__span">Good</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <main>
+            <div class="container">
+                @RenderBody()
+            </div>
+        </main>
+
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Javascript/Layout.js"></script>
+    <script type="text/javascript">
+        const links = document.querySelectorAll('.Layout__Sidebar__nav__item__Link nav-link');
+
+        links.forEach((link) => {
+            link.addEventListener('mousedown', () => {
+                link.classList.add('active');
+            })
+        })
+    </script>
+</body>
+</html>

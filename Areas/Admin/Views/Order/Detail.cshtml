@@ -1,0 +1,56 @@
+﻿@model PostOFSales.Models.SalesOrder
+
+
+@{
+    ViewBag.Title = "Sales Order";
+}
+
+<h2 class="heading__h1">Sale Order</h2>
+<hr>
+<h3 class="heading__h2"> Order : @Model.SaleOrderId</h3>
+<div class="table Detail__text">
+    <div class="table__row table__info--data">
+        <label>Order Date:</label> 
+        <div> @String.Format("{0:MM/dd/yyyy}", Model.SaleOrderDate)</div>
+        <label>Payment Method:</label>
+        <div>@(Model.status > 0?"Approve":"Processing")</div>
+        <label>Customer Name:</label>
+        <div>@Model.CustomerName</div>
+        <label for="cusAddress">Phone number:</label>
+        <div>@Model.CustomerPhoneNo</div>
+        <label>Customer Address:</label>
+        <div>@Model.customerAddress</div>
+    </div>
+</div>
+
+<div class="table">
+    <div class="table__header table__header--orderDetails">
+        <div>Product Name</div>
+        <div>Quantity</div>
+        <div>Price</div>
+    </div>
+
+    @foreach (var item in Model.OrderDetails)
+    {
+        <div class="table__row table__row--orderDetails">
+            <div>
+                @item.Product.ProdutName
+            </div>
+            <div>
+                @item.Quantity
+            </div>
+        
+            <div>$@(String.Format("{0:N0}",item.Price))</div>
+            
+        </div>
+    }
+<div>
+    <div class="table__row table__row--orderDetails">
+        <label class="table__row--detailsTotal">Total</label>
+        $@(String.Format("{0:N0}", Model.AmountPaid))
+    </div>
+</div>
+</div>
+    
+
+

@@ -1,0 +1,25 @@
+﻿@model PostOFSales.Models.Product
+
+
+<div class="popup">
+    <div class="popup__content">
+       <div class="popup__close__container">
+            <a href="/Admin/Product/Index" class="popup__close">&times;</a> 
+       </div>
+            <div class="popup__Data">
+                
+                    <img class="popup__Data__img" src="@Url.Content(Model.Image)" />
+                <div class="popup__Details">
+                    <div class="popup__Details--price">Price:</div>
+                    <span class="popup__Details--value">$@Model.UnitPrice</span>
+                    <div class="popup__Details--quantity">Quantity:</div>
+                    <span class="popup__Details--unit">@Model.ProductQuantity units</span>            
+                        <div class="popup__Details--AddCasrt">@Html.ActionLink("Add to Cart", "OrderNow", "ShoppingCart", new {id=Model.Product_Id},null)</div>
+                </div>
+            </div>
+        <div class="popup__footer">
+            
+        </div>
+    </div>
+    
+</div>

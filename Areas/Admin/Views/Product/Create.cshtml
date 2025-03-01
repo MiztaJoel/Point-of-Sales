@@ -1,0 +1,113 @@
+﻿@model PostOFSales.Models.ProductModelType
+
+
+
+@{
+    ViewBag.Title = "Index";
+    TempData.Keep();
+}
+
+<h1 class="heading__h1">
+    Add your Products
+</h1>
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form__row">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "form__row__label" })
+        @Html.TextBoxFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "form__row__label" })
+        @Html.TextBoxFor(model => model.Quantity)
+        @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "form__row__label" })
+        @Html.TextBoxFor(model => model.Description)
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        @Html.LabelFor(model => model.ColorId, htmlAttributes: new { @class = "form__row__label" })
+        @{ if (ViewBag.ColorType != null)
+            { @Html.DropDownList("ColorId", (SelectList)ViewBag.ColorType, "Select Color")}
+        }
+        @Html.ValidationMessageFor(model => model.ColorId, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "form__row__label" })
+        @Html.TextBoxFor(model => model.Color)
+        @Html.ValidationMessageFor(model => model.Color, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        @Html.LabelFor(model => model.UnitPrice, htmlAttributes: new { @class = "form__row__label" })
+        @Html.TextBoxFor(model => model.UnitPrice)
+        @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        @Html.LabelFor(model => model.Barcode, htmlAttributes: new { @class = "form__row__label" })
+        @Html.TextBoxFor(model => model.Barcode)
+        @Html.ValidationMessageFor(model => model.Barcode, "", new { @class = "form__row__error" })
+    </div>
+    <div class="form__row">
+        @Html.LabelFor(model => model.Category_Id, htmlAttributes: new { @class = "form__row__label" })
+        @{ if (ViewBag.Category_Id != null)
+            { @Html.DropDownList("Category_Id", (SelectList)ViewBag.ProductTypeId, "Select Product")}
+        }
+        @Html.ValidationMessageFor(model => model.Category_Id, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        @Html.LabelFor(model => model.Model_Id, htmlAttributes: new { @class = "form__row__label" })
+        @{ if (ViewBag.Model_Id != null)
+            {
+                @Html.DropDownList("Model_Id", (SelectList)ViewBag.Model_Id, "Select Model", htmlAttributes: new { @class = "require_one" })
+            }
+        }
+        @Html.ValidationMessageFor(model => model.Model_Id, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        @Html.LabelFor(model => model.ProductTypeId, htmlAttributes: new { @class = "form__row__label" })
+        @{ if (ViewBag.ProductTypeId != null)
+            {
+                @Html.DropDownList("ProductTypeId", (SelectList)ViewBag.ProductTypeId, "Select Product", htmlAttributes: new { @class = "require_one" })
+            }
+        }
+
+        @Html.ValidationMessageFor(model => model.ProductTypeId, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "form__row__label" })
+        @Html.TextBoxFor(model => model.ImageFile, new { type = "file" })
+        @Html.ValidationMessageFor(model => model.ImageFile, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        @{ if ((ViewBag.ProductTypeId == null) || (ViewBag.Model_Id == null) || (ViewBag.Category_Id == null))
+            {
+                <a href="~/Admin/Product/Create" class="small secondary">Back</a>
+            }
+            else
+            {
+                <button id="form__button" class="medium primary">Create Product</button>
+            }
+        }
+    </div>
+}
+<script type="text/javascript">
+
+    //$(document).ready(
+    //    function() {
+    //        $("#form__button").attr('disabled', 'disabled');
+
+    //        $('select').change(function () {
+    //            if ($(this).hasClass('require_one')) {
+    //                $("#form__button").removeAttr('disabled');
+    //            }
+    //        })
+
+
+
+
+    //});
+</script>
+

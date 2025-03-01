@@ -1,0 +1,104 @@
+﻿.Layout {
+    display: grid;
+    grid-template-columns: 26rem 1fr;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+    //This is done bcos the know how we  target psedo class that is visied and active
+
+
+    a {
+        &:link, &:visited {
+            display: flex;
+            align-items: baseline;
+            gap: 1.2rem;
+            color: var(--color-grey-600);
+            font-size: 1.6rem;
+            font-weight: 500;
+            padding: 1.2rem 2.4rem;
+            transition: all 0.3s;
+        }
+
+        &:hover,
+        &:active,
+        &:active:link,
+        &:active:visited {
+            color: var(--color-grey-800);
+            background-color: var(--color-grey-50);
+            border-radius: var(--border-radius-sm);
+        }
+
+        svg {
+            width: 2.4rem;
+            height: 2.4rem;
+            padding-top: 1rem;
+            fill: var(--color-grey-400);
+            transition: all .3s;
+        }
+
+        &:hover svg,
+        &:active svg,
+        &:active:link svg,
+        &:active:visited svg {
+            color: var(--color-brand-600);
+        }
+    }
+
+    &__header {
+        background-color: var(--color-grey-0);
+        padding: 1.2rem 4.8rem;
+        border-bottom: var(--border-color-sm);
+    }
+
+    &__Sidebar {
+        background-color: var(--color-grey-0);
+        padding: 3.2rem 2.4rem;
+        border-right: var(--border-color-sm);
+        grid-row: 1/-1;
+        /*Styling items in side bar*/
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+
+        &__Logo {
+            text-align: center;
+
+            &-Img {
+                height: 9.6rem;
+                width: auto;
+            }
+        }
+
+        &__nav {
+
+            &__item {
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+
+                &__List__Link__icon{
+                    padding-top:1rem;
+                }
+            }
+        }
+    }
+
+    & main {
+        background-color: var(--color-grey-50);
+        padding: 4rem 4.8rem 6.4rem;
+        overflow: scroll;
+
+        & .container {
+            max-width: 120rem;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 3.2rem;
+        }
+    }
+}
+
+.active {
+    color: var(--color-grey-800);
+    background-color: var(--color-grey-50);
+    border-radius: var(--border-radius-sm);
+}

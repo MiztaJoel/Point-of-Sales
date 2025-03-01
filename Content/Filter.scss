@@ -1,0 +1,15 @@
+﻿body {
+}
+.Filter {
+    display: grid;
+    grid-template-columns: 10rem auto auto 40rem auto;
+    gap: 2.4rem;
+    align-items: center;
+    justify-items: start;
+    text-align: center;
+}
+
+.product__filter{
+    display:flex;
+    justify-content:space-between;
+}

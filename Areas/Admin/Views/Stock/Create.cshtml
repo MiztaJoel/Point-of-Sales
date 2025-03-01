@@ -1,0 +1,170 @@
+﻿@model PostOFSales.Models.StockIn
+
+
+
+@{
+    ViewBag.Title = "Create Stock";
+    TempData.Keep();
+}
+<script src="~/Scripts/jquery-ui-1.14.1.min.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $("#ProductName").autocomplete(
+            {
+                source: '@Url.Action("GetProduct")',
+                minLength:4
+            }
+        )
+    })
+</script>
+
+<script src="~/Scripts/jquery-ui-1-14.1.js"></script>
+
+
+<h1 class="heading__h1">
+    Create Stock In / Out
+</h1>
+
+@if (ViewBag.EmptyProduct == 0)
+{
+    <div class="table__insufficient">
+        Pls kindly look category, Product Name and color must align with the database value.
+    </div>
+}
+@if(ViewBag.insufficient != null){
+<div class="table__insufficient">
+    Insufficient Product to stock Out! 
+</div>
+}
+
+@if (ViewBag.Quantity != null)
+{
+    foreach (var Quantity in ViewBag.Quantity)
+    {
+        if (Quantity.ProductQuantity == null)
+        {
+            <div>Check the selected option</div>
+        }
+    }
+
+}
+
+
+@using (Html.BeginForm("Create", "Stock", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form__row">
+        @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "form__row__label" })
+        @{ if (ViewBag.DropdownListItems != null)
+            { @Html.DropDownList("CategoryItem", (List<SelectListItem>)ViewBag.DropdownListItems, "Select Category", new { onchange = "this.form.submit()" })
+        }
+        }
+        @{
+            if (ViewBag.RepostDropdownListItems != null)
+            {
+                @Html.DropDownList("CategoryItem", (List<SelectListItem>)ViewBag.RepostDropdownListItems, "Select Category", new { onchange = "this.form.submit()" })
+            }
+        }
+
+        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        <label for="ProductName" class="form__row__label">Product Name</label>
+        @if (ViewBag.ProductName != null)
+        {
+            <input type="text" id="ProductName" name="ProductName" value="@ViewBag.ProductName " readonly />
+        }
+        else
+        {
+            <input type="text" id="ProductName" name="ProductName" />
+        }
+
+    </div>
+
+    <div class="form__row">
+        @Html.LabelFor(model => model.Color_Id, htmlAttributes: new { @class = "form__row__label" })
+        @{ if (ViewBag.ColorDropdownListItems != null)
+            { @Html.DropDownList("Color_Id", (List<SelectListItem>)ViewBag.ColorDropdownListItems, "Select Color", new { onchange = "this.form.submit()" })
+        }
+        }
+        @{
+            if (ViewBag.RepostColorDropdownListItems != null)
+            {
+                @Html.DropDownList("Color_Id", (List<SelectListItem>)ViewBag.RepostColorDropdownListItems, "Select Color", new { onchange = "this.form.submit()" })
+            }
+        }
+
+        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        @Html.LabelFor(model => model.CurrentQuantityBalance, htmlAttributes: new { @class = "form__row__label" })
+
+        @if (ViewBag.Quantity != null)
+        {
+            foreach (var Quantity in ViewBag.Quantity)
+            {
+                @Html.TextBox("quatity", (string)Quantity.ProductQuantity, new { @readonly = "true" });
+            }
+
+        }
+        @Html.ValidationMessageFor(model => model.CurrentQuantityBalance, "", new { @class = "form__row__error danger" })
+    </div>
+
+    <div class="form__row">
+        @Html.Label("Stock Type", htmlAttributes: new { @class = "form__row__label" })
+        @*@Html.TextBoxFor(model => model.AmountStockIn)*@
+        @Html.DropDownList("Stock", new List<SelectListItem>
+         {
+            new SelectListItem{Text="Stock In", Value="1" },
+            new SelectListItem{Text= "Stock Out", Value="2"}
+        }, "Stock Type", new { @class = "" })
+        @Html.ValidationMessageFor(model => model.StockType, "", new { @class = "form__row__error danger" })
+    </div>
+
+    <div class="form__row">
+        @Html.Label("Stock Amount", htmlAttributes: new { @class = "form__row__label" })
+        <input type="text" id="AmountStock" name="AmountStock" />
+        @Html.ValidationMessageFor(model => model.AmountStockIn, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "form__row__label" })
+        @Html.TextBoxFor(model => model.Description)
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "form__row__error danger" })
+    </div>
+    <div class="form__row">
+        @Html.LabelFor(model => model.SupplierName, htmlAttributes: new { @class = "form__row__label" })
+        @Html.TextBoxFor(model => model.SupplierName)
+        @Html.ValidationMessageFor(model => model.SupplierName, "", new { @class = "form__row__error danger" })
+    </div>
+
+
+
+
+    <div class="form__row">
+        <button id="form__button" class="medium primary">Create Stock</button>
+    </div>
+}
+
+@if (ViewBag.Quantity != null)
+{
+    foreach (var Quantity in ViewBag.Quantity)
+    {
+        @Quantity.ProductQuantity
+    }
+
+}
+<script>
+    let state = Boolean(@ViewBag.colorTextbox);
+    document.getElementById("ProductName").disabled = state ? true : false;
+
+    //const textbox = document.getElementById("ProductName");
+    //const value = textbox.value;
+
+    //if (value === "") {
+    //    document.getElementById("Color_Id").disabled = true;
+    //}
+    //else {
+    //    document.getElementById("Color_Id").disabled = false;
+    //}
+</script>

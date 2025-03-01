@@ -1,0 +1,38 @@
+﻿[
+  {
+    "outputFile": "Sass/Base.css",
+    "inputFile": "Sass/Base.scss"
+  },
+  {
+    "outputFile": "Content/Layout.css",
+    "inputFile": "Content/Layout.scss"
+  },
+  {
+    "outputFile": "Content/Base.css",
+    "inputFile": "Content/Base.scss"
+  },
+  {
+    "outputFile": "Content/FormComponent.css",
+    "inputFile": "Content/FormComponent.scss"
+  },
+  {
+    "outputFile": "Content/Component.css",
+    "inputFile": "Content/Component.scss"
+  },
+  {
+    "outputFile": "Content/Table.css",
+    "inputFile": "Content/Table.scss"
+  },
+  {
+    "outputFile": "Content/Popup.css",
+    "inputFile": "Content/Popup.scss"
+  },
+  {
+    "outputFile": "Content/Filter.css",
+    "inputFile": "Content/Filter.scss"
+  },
+  {
+    "outputFile": "Content/Pagination.css",
+    "inputFile": "Content/Pagination.scss"
+  }
+]

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9799abdacd1447deb4d2b006d266b144" Name="Diagram1">
+        <EntityTypeShape EntityType="Point_Of_SalesModel.Category" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Point_Of_SalesModel.Customer" Width="1.5" PointX="10.625" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Point_Of_SalesModel.ProductModel" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Point_Of_SalesModel.ProductType" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Point_Of_SalesModel.sysdiagram" Width="1.5" PointX="10.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Point_Of_SalesModel.OrderDetail" Width="1.5" PointX="5.25" PointY="3.25" />
+        <EntityTypeShape EntityType="Point_Of_SalesModel.SalesOrder" Width="1.5" PointX="4" PointY="6.875" />
+        <AssociationConnector Association="Point_Of_SalesModel.FK_OrderDetails_SalesOrder" />
+        <EntityTypeShape EntityType="Point_Of_SalesModel.StockOut" Width="1.5" PointX="6.75" PointY="13.5" />
+        <AssociationConnector Association="Point_Of_SalesModel.FK_StockOut_Category" />
+        <EntityTypeShape EntityType="Point_Of_SalesModel.Product" Width="1.5" PointX="9.375" PointY="1.125" />
+        <AssociationConnector Association="Point_Of_SalesModel.FK_Product_Category" />
+        <AssociationConnector Association="Point_Of_SalesModel.FK_OrderDetails_Product" />
+        <AssociationConnector Association="Point_Of_SalesModel.FK_Product_ProductModel" />
+        <AssociationConnector Association="Point_Of_SalesModel.FK_Product_ProductType" />
+        <EntityTypeShape EntityType="Point_Of_SalesModel.ColorType" Width="1.5" PointX="6.375" PointY="6.875" />
+        <AssociationConnector Association="Point_Of_SalesModel.FK_Product_ColorType" />
+        <EntityTypeShape EntityType="Point_Of_SalesModel.StockIn" Width="1.5" PointX="3" PointY="1.875" />
+        <AssociationConnector Association="Point_Of_SalesModel.FK_StockIn_Category" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

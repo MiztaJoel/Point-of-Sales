@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PostOFSales.Models.SalesOrder>
+
+@{
+    ViewBag.Title = "Sales Order";
+}
+
+<h2>Customer details</h2>
+
+<div class="table">
+    <div class="table__header table__header--order medium">
+        <div>Order Date</div>
+        <div>Payment Type</div>
+        <div>Status</div>
+        <div> Name</div>
+        <div> Phone</div>
+        <div>Email</div>
+        <div></div>
+    </div>
+
+    @foreach (var item in Model)
+    {
+     
+        <div class="table__row table__row--salesOrder">
+
+
+            <div>@String.Format("{0:MM/dd/yyyy }", item.SaleOrderDate) </div>
+            
+            <div>@item.PaymentMethod</div>
+            <div>
+                @(item.status > 0 ? "Approved" : "Processing")
+
+            </div>
+            <div>@item.CustomerName</div>
+            <div>@item.CustomerPhoneNo</div>
+            <div>@item.CustomerEmail</div>
+            <div>@Html.ActionLink("Detail", "Detail", new { id = item.SaleOrderId }) |@Html.ActionLink("Approve", "Detail", new { id = item.SaleOrderId })</div>
+        </div>
+
+    }
+</div>

@@ -1,0 +1,83 @@
+﻿@using PostOFSales.Models;
+
+@{
+    ViewBag.Title = "CheckOut";
+}
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Check Out</h2>
+
+@{
+    if (Session["Cart"] != null)
+    {
+        using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Post))
+        {
+            <div class="table">
+                <div class="table__header table__header--cart" role="row">
+                    <div>Name</div>
+                    <div>Price</div>
+                    <div>Quantity</div>
+                    <div>Sub Total</div>
+                </div>
+            </div>
+            foreach (var cart in (List<Cart>)Session["Cart"])
+            {
+                <div class="table__row table__row--cart">
+                    <div>@cart.Product.ProdutName</div>
+                    <div>@cart.Product.UnitPrice</div>
+                    <div><input type="text" name="quantity" id="quantity" class="table__row--input" value="@cart.Quatity" readonly></div>
+                     <div>@(string.Format("{0:N0}",cart.Product.UnitPrice*cart.Quatity))</div>
+                    <di>
+                        @Html.ActionLink("Delete", "Delete", "ShoppingCart", new { id = cart.Product.Product_Id },
+                       new { onClick = "return confirm('Are you sure you want to delete this?'))" })
+                    </di>
+                </div>
+            }
+            <div class="table__row table__row--total">
+                <label class="table--label">Total</label>
+                <div class="table--total">
+                    @{
+                        List<Cart> temp = (List<Cart>)Session["Cart"];
+                        var total = string.Format("{0:N0}", temp.Sum(x => x.Quatity * x.Product.UnitPrice));
+                    }
+                    @total USD
+                </div>
+            </div>
+
+    
+        }
+    }
+    else
+    {
+        <div>No items in your cart!!!</div>
+    }
+}
+<h2>Customer Information</h2>
+@using (Html.BeginForm("ProcessOrder", "ShoppingCart", FormMethod.Post, new {id = "customer-form"} ))
+{
+
+    <div class="table medium">
+        <div class="table__row table__info--data">
+
+            <label for="cusName">Customer Name:</label>
+            <input type="text" name="cusName"/>
+            <label for="cusPhone">Customer Phone: </label>
+            <input type="text" name="cusPhone" />
+            <label for="cusPhone">Customer Email:</label>
+            <input type="text" name="cusEmail" />
+            <label for="cusAddress">Customer Address:</label>
+            <input type="text" name="cusAddress" />
+        </div>
+    </div>
+    <div class="submit--info">
+        <input type="submit" value="Make Payment"class="primary checkout__btn" />
+    </div>
+}
+
+
+
+
+
